@@ -1,0 +1,842 @@
+.title {
+    font-size: 3rem;      /* grande taille */
+    font-weight: 700;     /* gras */
+    text-align: center;   /* centré */
+    margin: 40px 0;       /* espace autour */
+    color: #222;          /* couleur du texte */
+    letter-spacing: 2px;  /* espace entre les lettres */
+    text-transform: uppercase; /* tout en majuscules si tu veux */
+    font-family: "Arial Black", Arial, sans-serif;
+    color: white;
+}
+
+.profil{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+
+}
+
+.description{
+    text-align: justify;
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.combo{
+    display: flex;
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+    background: linear-gradient(to top, #0a0f2c, #1a237e, #0a0f2c);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    min-height: 100vh; /* assez de scroll */
+}
+
+/* Style pour le canvas */
+#canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 0; /* Permet les interactions avec la scène 3D */
+    pointer-events: auto; /* Active les interactions avec le canvas */
+    cursor: default; /* Curseur par défaut */
+}
+
+/* Style pour le curseur personnalisé sur les éléments interactifs */
+.interactive-cursor {
+    cursor: pointer !important;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 50% 100%; }
+    50% { background-position: 50% 0%; }
+    100% { background-position: 50% 100%; }
+}
+
+.word-section {
+    position: relative;
+    height: 200vh; /* section haute pour scroller */
+}
+
+.word {
+    position: absolute;
+    opacity: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(40px);
+}
+
+.word.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/******** Popups ********/
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0);
+  transition: all 0.4s ease;
+  pointer-events: none;
+  z-index: 3000; /* Augmenté pour être au-dessus de tout */
+  opacity: 0;
+  visibility: hidden;
+  padding-left: 0; /* Par défaut, pas de décalage */
+  box-sizing: border-box;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Les popups ne sont plus décalés lorsque le panneau latéral est actif */
+
+.popup.show {
+  display: flex;
+  background: rgba(0, 0, 0, 0.85);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+
+.popup .popup-content {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  max-width: 1200px;
+  background: #0f1635;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  padding: 20px;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.4s ease;
+  overflow-y: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup.show .popup-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.popup .popup-content h2 {
+  margin: 0 0 15px 0;
+  color: #fff;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.popup .popup-content > p {
+  margin: 0 0 20px 0;
+  color: #ffffff;
+  font-size: clamp(1.1rem, 1.7vw, 1.3rem);
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.7;
+  padding: 0 10px;
+  opacity: 1;
+  font-weight: 400;
+}
+
+.popup-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  z-index: 10;
+}
+
+.popup-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.popup-close:hover {
+{{  }}
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.box {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.box .image-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .box {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .box.reverse {
+        flex-direction: row-reverse;
+    }
+}
+
+.box img, .box video {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    border-radius: 8px;
+
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .box img, .box video {
+        max-width: 50%;
+        max-height: 500px;
+    }
+}
+
+.box .text-content {
+    flex: 1;
+    width: 100%;
+}
+
+.box .text-content p {
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    line-height: 1.7;
+    margin: 0 0 15px 0;
+    color: #ffffff;
+    opacity: 1;
+    font-weight: 400;
+}
+
+.box .text-content h3 {
+    margin-top: 0;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: #fff;
+}
+
+.box .expand-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease, background 0.2s ease;
+}
+
+.box .image-container:hover .expand-button {
+    opacity: 1;
+}
+
+.box .expand-button:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+
+/* Style pour l'image agrandie */
+.image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-modal img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.image-modal.active {
+    display: flex;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 2001;
+}
+
+/******** Fin Popups ********/
+
+/******** Branding en haut à gauche */
+#branding {
+  position: fixed;
+  top: 30px;
+  left: 50px;
+  z-index: 1100; /* au-dessus du canvas et du popup */
+  color: #ffffff;
+  line-height: 1.15;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.45);
+  pointer-events: none; /* ne bloque pas les clics sur la scène */
+}
+
+#branding .brand-name {
+  margin: 0;
+  line-height: 1.2;
+  color: #fff;
+  letter-spacing: 0.3px;
+  font-size: 2.5rem; /* 2.2rem + 15% */
+  font-weight: 600;
+}
+
+#branding .brand-sub {
+  font-weight: 400;
+  font-size: 1.8rem; /* 1.6rem + 15% */
+  opacity: 0.9;
+  margin: 10px 0; /* Ajustement de la marge */
+  display: block;
+}
+
+#branding .brand-sub + span {
+  display: block;
+  font-size: 1.3rem; /* 1.1rem + 15% */
+  color: #aaa;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-top: 10px; /* Ajustement de la marge */
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/******** Box Image + Texte ********/
+.box {
+    display: flex;
+    align-items: center; /* Centrage vertical */
+    margin: 40px auto;
+    gap: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 35px 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 1300px;
+    width: 92%;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+
+.box .text-content {
+    flex: 1;
+    color: white;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    padding: 10px 0;
+    min-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.box .text-content h3 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.box .text-content h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #4a6cf7, #8a2be2);
+    border-radius: 3px;
+}
+
+.box .text-content a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 20px;
+    background: linear-gradient(90deg, #4a6cf7, #8a2be2);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.box .text-content a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 108, 247, 0.4);
+}
+
+/* Modificateur pour alterner */
+.box.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .box {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+        margin: 30px auto;
+        width: 90%;
+    }
+
+    .box.reverse {
+        flex-direction: column;
+    }
+
+
+
+    .box .text-content h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .box {
+        width: 95%;
+        padding: 20px 15px;
+    }
+
+    .box .text-content {
+        font-size: 1rem;
+    }
+
+    .box .text-content h3 {
+        font-size: 1.5rem;
+    }
+}
+
+
+video {
+  width: 400px;
+}
+
+.damn {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+    margin: 0;
+    display: block;
+    object-fit: contain;
+}
+
+/* Styles spécifiques pour les images de la section webdesign */
+#popupNew1 .box img {
+  width: 100%;
+  max-width: 800px;
+  max-height: 600px;
+}
+
+/* --- Styles spécifiques pour la section Webdesign --- */
+
+/* --- Contenu de la popup --- */
+.popup-content {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 550px; /* Largeur maximale de la pop-up */
+    width: 90%;
+    text-align: center;
+    position: relative; /* Nécessaire pour positionner le bouton de fermeture */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==================== */
+/* MENU BURGER */
+/* ==================== */
+.menu-toggle {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    width: 50px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 9999;
+    padding: 0;
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: white;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+    position: absolute;
+    left: 5px;
+}
+
+.menu-toggle span:nth-child(1) {
+    top: 10px;
+}
+
+.menu-toggle span:nth-child(2) {
+    top: 20px;
+}
+
+.menu-toggle span:nth-child(3) {
+    top: 30px;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 20px;
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 20px;
+}
+
+/* Styles pour le panneau latéral */
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Changé de -400px à -100% pour s'assurer qu'il soit complètement hors écran */
+  width: 350px;
+  max-width: 90%; /* Pour les petits écrans */
+  height: 100vh;
+  background: rgba(10, 15, 44, 0.98);
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+  transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow-y: auto;
+  padding: 100px 25px 40px;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+  -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur mobile */
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateZ(0); /* Force l'accélération matérielle */
+}
+
+.side-panel.active {
+  right: 0;
+  /* Effet de rebond léger */
+  animation: slideIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0;
+  }
+}
+
+/* Pour les petits écrans */
+@media (max-width: 480px) {
+  .side-panel {
+    width: 85%;
+    padding: 80px 15px 30px;
+  }
+}
+
+.panel-content {
+  color: white;
+}
+
+.panel-content h2 {
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.menu-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-items li {
+  margin-bottom: 15px;
+}
+
+.menu-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-items li {
+  margin-bottom: 15px;
+}
+
+.menu-button {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.menu-button:hover,
+.menu-button:focus {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(10px);
+  outline: none;
+}
+
+.menu-button:active {
+  transform: translateX(10px) scale(0.98);
+}
+
+/* Ajustement pour les écrans mobiles */
+@media (max-width: 768px) {
+  .side-panel {
+    width: 80%;
+    right: -85%;
+  }
+
+  .menu-toggle {
+    top: 20px;
+    right: 20px;
+  }
+}
+
+.popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.popup-close:hover {
+    color: #333;
+}
+
+/* --- Photo de profil ronde --- */
+.profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; /* Crée le cercle */
+    object-fit: cover; /* Assure que l'image remplit le cercle sans se déformer */
+    border: 4px solid #f0f0f0;
+    margin-bottom: 20px;
+}
+
+/* --- Titre "À propos de moi" --- */
+.popup-content h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* --- Paragraphes de description --- */
+.popup-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* --- Le bouton de téléchargement --- */
+.download-button {
+    display: inline-block; /* Permet d'appliquer padding et margin */
+    background-color: #007bff; /* Bleu primaire, très commun et efficace */
+    color: #ffffff;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none; /* Enlève le soulignement du lien */
+    border-radius: 8px;
+    margin-top: 20px; /* Espace au-dessus du bouton */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.download-button:hover {
+    background-color: #0056b3; /* Une teinte plus foncée au survol */
+    transform: translateY(-2px); /* Léger effet de soulèvement */
+}
+
+
+/* Styles du panneau latéral */
+
+
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+canvas {
+    display: block;
+}
+
+/* Styles pour la galerie */
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #1a237e;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.project-link:hover {
+    background-color: #303f9f;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    aspect-ratio: 16/9;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+}
+
+.gallery-item img,
+.gallery-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item video {
+    background-color: #000;
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Suppression du style qui masquait les barres du menu burger */
+#burger-menu-btn span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+
+

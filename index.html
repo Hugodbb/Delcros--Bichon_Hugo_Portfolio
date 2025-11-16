@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio Delcros--Bichon Hugo</title>
+        <link rel="stylesheet" href="./src/style.css" />
+    </head>
+
+    <body>
+        <canvas id="canvas"></canvas>
+        <!-- Signature en haut à gauche -->
+        <div id="branding" aria-label="Signature du site">
+            <span class="brand-name">Delcros--Bichon Hugo</span><br />
+            <span class="brand-sub">Mon univers</span>
+            <span
+                >Cliquez sur les éléments pour faire apparaitre le contenu</span
+            >
+        </div>
+        <!-- Popup 1 -->
+        <div
+            id="popup1"
+            class="popup"
+            role="dialog"
+            aria-modal="true"
+            aria-hidden="true"
+        >
+            <div class="popup-content">
+                <button class="popup-close" aria-label="Fermer">✕</button>
+                <h2>Stage l'Appart fitness</h2>
+
+                <p>
+                    Voici une partie des réalisations que j'ai pu effectuer
+                    durant mon stage l'Appart fitness qui est une franchise de
+                    salle de sport. J'ai réalisé mon stage dans celle de Baugé
+                    en anjou en 2025.
+                </p>
+                <div class="box">
+                    <video
+                        src="/images/projets-stage/l'apaprt_fitness_motiondesign.mp4"
+                        controls
+                    ></video>
+                    <div class="text-content">
+                        <p>
+                            Voici un motion design 3D que j'ai pu réaliser
+                            durant mon stage. J'ai créé cette animation sur le
+                            logiciel Blender.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box reverse">
+                    <video
+                        src="/images/projets-stage/final2.mp4"
+                        controls
+                    ></video>
+                    <div class="text-content">
+                        <p>
+                            Voici un motion design que j'ai créé sur DaVinci
+                            Resolve. Le but était de créer une animation pour
+                            introduire les vidéos courtes que la salle met sur
+                            ses réseaux sociaux.
+                        </p>
+                    </div>
+                </div>
+                <div class="box">
+                    <img
+                        src="/images/projets-stage/FAQ_mise_en_forme1.jpg"
+                        alt="Post Instagram FAQ"
+                    />
+                    <div class="text-content">
+                        <p>
+                            Voici un post instagram que j'ai pu réaliser durant
+                            mon stage. J'ai créé les éléments sur le logiciel
+                            Affinity Designer puis j'ai mit les éléments
+                            ensemble dans Affinity Publisher
+                        </p>
+                    </div>
+                </div>
+                <div class="box reverse">
+                    <img
+                        src="/images/projets-stage/affiche-offre-pompiers.webp"
+                        alt="Affiche recrutement pompiers"
+                    />
+                    <div class="text-content">
+                        <p>
+                            J'ai créé cette affiche pour promouvoir une offre de
+                            recrutement des pompiers. Le design a été réalisé
+                            avec Affinity Designer.
+                        </p>
+                    </div>
+                </div>
+                <div class="box">
+                    <img
+                        src="/images/projets-stage/affiche_jeux_de_societe.png"
+                        alt="Affiche soirée jeux de société"
+                    />
+                    <div class="text-content">
+                        <p>
+                            Voici une affiche que j'ai pu réaliser pour la
+                            salle, elle annonce un évènement, celui d'une soirée
+                            jeu de société. J'ai réalisé cette affiche sur les
+                            logiciels Affinity Designer et Publisher.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            id="popupCinema"
+            class="popup popup-cinema"
+            role="dialog"
+            aria-modal="true"
+            aria-hidden="true"
+        >
+            <div class="popup-content">
+                <button class="popup-close" aria-label="Fermer">✕</button>
+                <h2>Projets Cinéma & Audiovisuel</h2>
+
+                <div class="box reverse">
+                    <video
+                        src="/images/projets3/OFFICIAL-VIDEO-UCAN-PRESENTATION-Copie.webm"
+                        controls
+                    ></video>
+                    <div class="text-content">
+                        <h3>Présentation UCAN</h3>
+                        <p>
+                            Vidéo de présentation du projet UCAN qui est une
+                            entreprise fictive qui lutte pour le ramassage des
+                            déchets et qui s'adresse aux jeunes
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <video
+                        src="/images/projets3/video0001-1553.webm"
+                        controls
+                    ></video>
+                    <div class="text-content">
+                        <h3>Animation 3D</h3>
+                        <p>
+                            Une animation 3D qui vise à présenter une
+                            exposition/galerie d'art fictive sur le thème de la
+                            surconsommation
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box reverse">
+                    <div class="image-container">
+                        <a
+                            href="https://www.instagram.com/reel/DL4futesKrA/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img
+                                src="/images/projets3/soustaf.png"
+                                alt="Voir la vidéo sur Instagram"
+                            />
+                        </a>
+                        <button
+                            class="expand-button"
+                            aria-label="Agrandir l'image"
+                        >
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path
+                                    fill="currentColor"
+                                    d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="text-content">
+                        <h3>Vidéo Instagram</h3>
+                        <p>
+                            Projet réalisé pour un artiste musical, je me suis
+                            occupé de la production de la dernière partie de la
+                            vidéo lorsqu'il y a de la 3D.
+                        </p>
+                        <p>
+                            Cliquez sur l'image pour voir la publication
+                            complète sur Instagram.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <video
+                        src="/images/projets3/Une-derniere-Copie.webm"
+                        controls
+                    ></video>
+                    <div class="text-content">
+                        <h3>Une dernière</h3>
+                        <p>
+                            Cours métgage amateur réalisé à deux, ce projet m'a
+                            permis de m'améliorer dans le cadrage, la
+                            réalisation, la prise de son ainsi que le montage
+                            audiovisuel.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box reverse">
+                    <video
+                        src="/images/projets3/Telecommande-3D-Copie.webm"
+                        controls
+                    ></video>
+                    <div class="text-content">
+                        <h3>Télécommande 3D</h3>
+                        <p>
+                            Modélisation et animation 3D d'une télécommande pour
+                            une insertion dans une vidéo
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <video
+                        src="/images/projets3/Aux-frontieres-du-reel-_2_-Copie.webm"
+                        controls
+                    ></video>
+                    <div class="text-content">
+                        <h3>Aux frontières du réel</h3>
+                        <p>
+                            Une courte vidéo qui présente une exposition fictive
+                            sur le thème du surréalisme
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popup 2 - Galerie Médias -->
+        <div
+            id="popup2"
+            class="popup"
+            role="dialog"
+            aria-modal="true"
+            aria-hidden="true"
+        >
+            <div class="popup-content gallery-container">
+                <button class="popup-close" aria-label="Fermer">✕</button>
+                <h2>Galerie 3D</h2>
+                <h3>
+                    Voici des créations que j'ai pu réaliser sur le logiciel
+                    Blender
+                </h3>
+
+                <div class="gallery-grid">
+                    <!-- Ligne 1 -->
+                    <div class="gallery-item">
+                        <video
+                            src="/images/projets1/0001-0200.webm"
+                            controls
+                            loop
+                            muted
+                        ></video>
+                    </div>
+                    <div class="gallery-item">
+                        <img
+                            src="/images/projets1/chalet.png"
+                            alt="Scène 3D - Nuit au chalet"
+                        />
+                    </div>
+                    <div class="gallery-item">
+                        <video
+                            src="/images/projets1/hey.webm"
+                            controls
+                            loop
+                            muted
+                        ></video>
+                    </div>
+
+                    <!-- Ligne 2 -->
+                    <div class="gallery-item">
+                        <img
+                            src="/images/projets1/chambre0001.png"
+                            alt="Scène 3D - Chambre"
+                        />
+                    </div>
+                    <div class="gallery-item">
+                        <video
+                            src="/images/projets1/0001-0250.webm"
+                            controls
+                            loop
+                            muted
+                        ></video>
+                    </div>
+                    <div class="gallery-item">
+                        <img
+                            src="/images/projets1/ile_volante_cycles0000.png"
+                            alt="Scène 3D - Île volante"
+                        />
+                    </div>
+
+                    <!-- Ligne 3 -->
+                    <div class="gallery-item">
+                        <video
+                            src="/images/projets1/0001-0454.webm"
+                            controls
+                            loop
+                            muted
+                        ></video>
+                    </div>
+                    <div class="gallery-item">
+                        <video
+                            src="/images/projets1/a_final_render.webm"
+                            controls
+                            loop
+                            muted
+                        ></video>
+                    </div>
+                    <div class="gallery-item">
+                        <video
+                            src="/images/projets1/video0001-0250.webm"
+                            controls
+                            loop
+                            muted
+                        ></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popup Rocket -->
+        <div
+            id="popupRocket"
+            class="popup"
+            role="dialog"
+            aria-modal="true"
+            aria-hidden="true"
+        >
+            <div class="popup-content">
+                <button class="popup-close" aria-label="Fermer">✕</button>
+
+                <img
+                    src="/images/CV_image.webp"
+                    alt="Photo de Hugo Delcros--Bichon"
+                    class="profile-picture"
+                />
+
+                <h2>À propos de moi</h2>
+
+                <p>
+                    Bienvenue sur mon portfolio ! Je m'appelle
+                    <strong>Hugo Delcros--Bichon</strong>, et je suis
+                    actuellement étudiant en troisième année de BUT MMI à Laval,
+                    spécialisé en création numérique.
+                </p>
+                <p>
+                    Passionné par le design et le développement, je suis à la
+                    recherche d'un <strong>stage de 16 semaines</strong> à
+                    partir du 10 mars pour mettre en pratique mes compétences.
+                </p>
+
+                <a
+                    href="/images/CV_image.webp"
+                    class="download-button"
+                    download="CV_Hugo_Delcros-Bichon.pdf"
+                >
+                    Télécharger mon CV
+                </a>
+            </div>
+        </div>
+
+        <!-- Menu Burger -->
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Panneau latéral -->
+        <div class="side-panel" id="sidePanel">
+            <div class="panel-content">
+                <h2>Menu</h2>
+                <ul class="menu-items" role="menu">
+                    <li>
+                        <button
+                            type="button"
+                            class="menu-button"
+                            data-popup="popupRocket"
+                            role="menuitem"
+                        >
+                            À propos de moi
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="menu-button"
+                            data-popup="popup1"
+                            role="menuitem"
+                        >
+                            Stage l'Appart fitness
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="menu-button"
+                            data-popup="popup2"
+                            role="menuitem"
+                        >
+                            Créations 3D
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="menu-button"
+                            data-popup="popupCinema"
+                            role="menuitem"
+                        >
+                            Cinéma & Audiovisuel
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="menu-button"
+                            data-popup="popupNew1"
+                            role="menuitem"
+                        >
+                            Webdesign
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="menu-button"
+                            data-popup="popupGraphisme"
+                            role="menuitem"
+                        >
+                            Graphisme
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Popup Webdesign -->
+        <div
+            id="popupwebdesign"
+            class="popup"
+            role="dialog"
+            aria-modal="true"
+            aria-hidden="true"
+        >
+            <div class="popup-content">
+                <button class="popup-close" aria-label="Fermer">✕</button>
+                <h2>Webdesign</h2>
+                <p>
+                    Voici des projets de création de sites web que j'ai pu
+                    réaliser durant mes années de MMI
+                </p>
+
+                <div class="box">
+                    <a
+                        href="https://perso.univ-lemans.fr/~i2301463/Webdoc_Edda_Bel_Abysse"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            class="damn"
+                            src="/images/projets4/webdoc.png"
+                            alt="Webdoc Edda Bel Abyss"
+                        />
+                    </a>
+                    <div class="text-content">
+                        <h3>Webdoc Edda Bel Abyss</h3>
+                        <p>
+                            Un webdoc sur la chanteuse Lavalloise Edda Bel
+                            Abysse, présentant sa vie, ses passions et ses
+                            projets. Réalisé en HTML, CSS et JavaScript.
+                        </p>
+                        <a
+                            href="https://perso.univ-lemans.fr/~i2301463/Webdoc_Edda_Bel_Abysse"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Voir le projet</a
+                        >
+                    </div>
+                </div>
+
+                <div class="box reverse">
+                    <a
+                        href="https://sae202.2024.weblazer.fr/agence7"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            class="damn"
+                            src="/images/projets4/site_wordpress.webp"
+                            alt="Site WordPress UCan"
+                        />
+                    </a>
+                    <div class="text-content">
+                        <h3>UCan</h3>
+                        <p>
+                            Site web créé avec WordPress pour promouvoir
+                            l'association fictive UCan. Réalisation dans le
+                            cadre d'un projet académique.
+                        </p>
+                        <a
+                            href="https://sae202.2024.weblazer.fr/agence7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Voir le projet</a
+                        >
+                    </div>
+                </div>
+
+                <div class="box">
+                    <a
+                        href="https://www.figma.com/proto/tab9ecvzJ60BU5gpsphXJG/Childish-Gambino---Webdoc?node-id=2019-5&starting-point-node-id=2019%3A5"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            class="damn"
+                            src="/images/projets4/gambino.png"
+                            alt="Webdoc Childish Gambino"
+                        />
+                    </a>
+                    <div class="text-content">
+                        <h3>Webdoc Childish Gambino</h3>
+                        <p>
+                            Webdoc interactif sur l'artiste américain Childish
+                            Gambino, présentant sa vie et son œuvre. Maquette
+                            interactive réalisée avec Figma.
+                        </p>
+                        <a
+                            href="https://www.figma.com/proto/tab9ecvzJ60BU5gpsphXJG/Childish-Gambino---Webdoc?node-id=2019-5&starting-point-node-id=2019%3A5"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Voir le projet</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popup Graphisme -->
+        <div
+            id="popupGraphisme"
+            class="popup"
+            role="dialog"
+            aria-modal="true"
+            aria-hidden="true"
+        >
+            <div class="popup-content">
+                <button class="popup-close" aria-label="Fermer">✕</button>
+                <h2>Graphisme</h2>
+                <p>
+                    Voici des projets de graphismes et d'affiches que j'ai pu
+                    réaliser
+                </p>
+
+                <div class="box">
+                    <img
+                        src="/images/projets2/ours-polaire1.webp"
+                        alt="Projet graphique 3"
+                    />
+                    <div class="text-content">
+                        <h3>Réchauffement climatique</h3>
+                        <p>
+                            Voici un projet que j'ai réalisé dans le contexte
+                            d'un cours, nous devions créé une affiche qui a pour
+                            but de dénoncer un problème environnemental. J'ai
+                            donc décidé de parler de la fonte des glaciers et du
+                            réchauffement climatique à travers cette affiche.
+                            J'ai réalisé ce visuel dans blender et j'ai utilisé
+                            Affinity Designer pour mettre les éléments ensemble.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box reverse">
+                    <img
+                        src="/images/projets2/recto.webp"
+                        alt="Projet graphique 4"
+                    />
+                    <div class="text-content">
+                        <h3>Gaspillage</h3>
+                        <p>
+                            Voici un projet que j'ai réalisé dans le contexte
+                            d'un cours, nous devions créé une affiche qui
+                            dénonce un problème environnemental à partir d'une
+                            photo. J'ai choisi le gaspillage alimentaire et j'ai
+                            assemblé la photo avec des éléments vectoriels dans
+                            la suite affinity
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <img
+                        src="/images/projets2/affiche.webp"
+                        alt="Projet graphique 1"
+                    />
+                    <div class="text-content">
+                        <h3>Stephen King</h3>
+                        <p>
+                            Dans le cadre d'un cours, il nous était demandé de
+                            créer un dépliant sur une personnalité que l'on
+                            aime. J'ai choisi Stephen King car c'est mon auteur
+                            favori. Ce dépliant a été produit avec la suite
+                            affinity
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box reverse">
+                    <img
+                        src="/images/projets2/affiche_blackminton2.png"
+                        alt="Projet graphique 2"
+                    />
+                    <div class="text-content">
+                        <h3>Affiche Blackminton</h3>
+                        <p>
+                            Voici une affiche que j'ai réalisé pour mon club de
+                            badminton, elle a pour but d'annoncer un eévènement,
+                            j'ai créé ce visuel dans la suite affinity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="./src/main.js"></script>
+    </body>
+</html>
